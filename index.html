@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AuthAE — Securing the Emirates Digital Future</title>
+  <meta name="description" content="AuthAE is the UAE's premier digital authentication platform — powering identity for a nation building tomorrow at the speed of ambition." />
+  <meta name="keywords" content="UAE authentication, emirates digital identity, UAE auth platform, secure identity UAE, Gulf fintech identity, Dubai authentication, Abu Dhabi digital" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="AuthAE — Securing the Emirates Digital Future" />
+  <meta property="og:description" content="Identity infrastructure for a nation that moves at the speed of vision. Authenticate the Emirates." />
+  <meta property="og:url" content="https://authae.com" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://authae.com" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sand:        #faf6ee;
+      --dune:        #f0e9d8;
+      --stone:       #d8cdb8;
+      --gold:        #c8961e;
+      --gold-bright: #e8b030;
+      --gold-dim:    #a07818;
+      --obsidian:    #0a0a08;
+      --deep:        #111108;
+      --panel:       #1a1a10;
+      --green-uae:   #006644;
+      --text-primary:#0a0a08;
+      --text-muted:  #5a5545;
+      --text-soft:   #9a9080;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--sand);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    /* ── BANNER ── */
+    #offer-banner {
+      background: var(--obsidian);
+      color: rgba(250,246,238,0.52);
+      text-align: center;
+      padding: 0.6rem 1.5rem;
+      font-size: 0.76rem; letter-spacing: 0.03em; line-height: 1.5;
+      position: relative; z-index: 200;
+    }
+    #offer-banner a {
+      color: var(--gold-bright); text-decoration: none; font-weight: 500;
+      border-bottom: 1px solid rgba(232,176,48,0.3);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    #offer-banner a:hover { color: #f5c84a; border-color: #f5c84a; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(250,246,238,0.93);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(200,150,30,0.15);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(250,246,238,0.99);
+      box-shadow: 0 1px 20px rgba(10,10,8,0.08);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem; font-weight: 600;
+      letter-spacing: 0.04em; color: var(--text-primary);
+      text-decoration: none; flex-shrink: 0;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links {
+      display: flex; gap: 2.5rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.78rem; font-weight: 400;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-muted); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-cta {
+      font-size: 0.76rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--obsidian); background: var(--gold-bright);
+      border: none; padding: 0.62rem 1.4rem; border-radius: 2px;
+      cursor: pointer; text-decoration: none; white-space: nowrap;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: #f5c84a; transform: translateY(-1px); }
+
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--text-primary); border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-drawer {
+      display: none; position: fixed; inset: 0;
+      background: rgba(10,10,8,0.97); z-index: 99;
+      flex-direction: column; align-items: center;
+      justify-content: center; gap: 2.5rem; padding: 2rem;
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-drawer a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem; font-weight: 300; color: var(--sand);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-drawer a:hover { color: var(--gold-bright); }
+    .nav-drawer .drawer-cta {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--obsidian); background: var(--gold-bright);
+      padding: 1rem 2.5rem; border-radius: 2px; margin-top: 0.5rem;
+    }
+    .drawer-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: none; border: none;
+      color: rgba(250,246,238,0.35); font-size: 1.8rem;
+      cursor: pointer; line-height: 1;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative; width: 100%; height: 100svh;
+      min-height: 560px; display: flex;
+      align-items: center; justify-content: center;
+      overflow: hidden; background: var(--obsidian);
+    }
+    #hero-fallback {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, #0a0a08 0%, #1a1a10 50%, #111108 100%);
+      z-index: 0;
+    }
+    #hero-bg-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 45%;
+      z-index: 1;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,10,8,0.62) 0%,
+        rgba(10,10,8,0.30) 38%,
+        rgba(10,10,8,0.85) 100%
+      );
+      z-index: 2;
+    }
+    /* Geometric desert pattern overlay */
+    .hero-geo {
+      position: absolute; inset: 0; z-index: 2;
+      background-image:
+        linear-gradient(60deg, rgba(200,150,30,0.04) 1px, transparent 1px),
+        linear-gradient(-60deg, rgba(200,150,30,0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative; z-index: 3; text-align: center;
+      color: var(--sand); max-width: 860px; padding: 0 1.5rem;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; font-weight: 400;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold-bright); margin-bottom: 1.4rem;
+      opacity: 0;
+      animation: fadeUp 1s 0.3s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 8.5vw, 7.2rem);
+      font-weight: 300; line-height: 1.04;
+      letter-spacing: -0.01em; margin-bottom: 1.6rem;
+      opacity: 0;
+      animation: fadeUp 1.1s 0.5s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .hero-title em { font-style: italic; color: var(--gold-bright); }
+    .hero-sub {
+      font-size: clamp(0.92rem, 2.2vw, 1.05rem); font-weight: 300;
+      line-height: 1.75; color: rgba(250,246,238,0.68);
+      max-width: 520px; margin: 0 auto 2.2rem;
+      opacity: 0;
+      animation: fadeUp 1.1s 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 1.1s 0.9s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .btn-primary {
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--obsidian); background: var(--gold-bright);
+      border: none; padding: 0.95rem 2rem; border-radius: 2px;
+      cursor: pointer; text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover { background: #f5c84a; transform: translateY(-2px); }
+    .btn-ghost {
+      font-size: 0.78rem; font-weight: 400;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--sand); background: transparent;
+      border: 1px solid rgba(250,246,238,0.3);
+      padding: 0.95rem 2rem; border-radius: 2px;
+      cursor: pointer; text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold-bright);
+      background: rgba(200,150,30,0.1);
+      transform: translateY(-2px);
+    }
+    .hero-scroll-hint {
+      position: absolute; bottom: 2rem; left: 50%;
+      transform: translateX(-50%); z-index: 3;
+      display: flex; flex-direction: column; align-items: center; gap: 0.45rem;
+      color: rgba(250,246,238,0.32);
+      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      animation: scrollFloat 2.5s ease-in-out infinite;
+    }
+    @keyframes scrollFloat {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(7px); }
+    }
+    .scroll-line {
+      width: 1px; height: 36px;
+      background: linear-gradient(to bottom, rgba(200,150,30,0.7), transparent);
+    }
+
+    /* ── SECTION COMMON ── */
+    .section-label {
+      font-size: 0.67rem; font-weight: 500;
+      letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--gold-dim); margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 300; line-height: 1.14;
+      color: var(--text-primary); margin-bottom: 1.4rem;
+    }
+    .section-title em { font-style: italic; color: var(--gold-dim); }
+    .section-body {
+      font-size: 0.97rem; font-weight: 300;
+      line-height: 1.85; color: var(--text-muted); max-width: 520px;
+    }
+
+    /* ── VISION SECTION ── */
+    #vision-wrap { padding: 6rem 4rem; background: #fff; }
+    #vision {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .vision-pillars { display: flex; flex-direction: column; gap: 1.5px; }
+    .vision-pillar {
+      display: grid; grid-template-columns: 72px 1fr;
+      align-items: stretch;
+      border: 1px solid var(--dune); overflow: hidden;
+      background: var(--sand); transition: background 0.3s;
+    }
+    .vision-pillar:hover { background: #fdf6e0; }
+    .vision-pillar-icon {
+      background: var(--obsidian);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; padding: 1.6rem 0; flex-shrink: 0;
+    }
+    .vision-pillar-body { padding: 1.4rem 1.6rem; }
+    .vision-pillar-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--text-primary); margin-bottom: 0.3rem;
+    }
+    .vision-pillar-body p {
+      font-size: 0.81rem; font-weight: 300;
+      line-height: 1.7; color: var(--text-muted);
+    }
+    .vision-callout {
+      background: linear-gradient(135deg, var(--obsidian) 0%, var(--panel) 100%);
+      border-radius: 3px; padding: 2.2rem; color: var(--sand);
+      margin-top: 1.5px;
+    }
+    .vision-callout .big-stat {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.2rem; font-weight: 300; line-height: 1;
+      color: var(--gold-bright); margin-bottom: 0.4rem;
+    }
+    .vision-callout p {
+      font-size: 0.82rem; font-weight: 300;
+      color: rgba(250,246,238,0.62); line-height: 1.65;
+    }
+
+    /* ── CAPABILITIES ── */
+    #capabilities {
+      background: var(--obsidian); color: var(--sand); padding: 7rem 4rem;
+    }
+    .cap-inner { max-width: 1200px; margin: 0 auto; }
+    #capabilities .section-title { color: var(--sand); }
+    #capabilities .section-title em { color: var(--gold-bright); }
+    #capabilities .section-body { color: rgba(250,246,238,0.52); }
+    #capabilities .section-label { color: var(--gold-bright); }
+    .cap-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 4rem;
+    }
+    .cap-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(200,150,30,0.1);
+      padding: 2.5rem 2rem;
+      transition: background 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .cap-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(to right, var(--gold-dim), var(--gold-bright));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+    .cap-card:hover::before { transform: scaleX(1); }
+    .cap-card:hover { background: rgba(200,150,30,0.05); }
+    .cap-stat {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 300;
+      color: var(--gold-bright); line-height: 1; margin-bottom: 0.5rem;
+    }
+    .cap-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 400;
+      margin-bottom: 0.8rem; color: var(--sand);
+    }
+    .cap-card p {
+      font-size: 0.87rem; font-weight: 300;
+      line-height: 1.75; color: rgba(250,246,238,0.5);
+    }
+
+    /* ── MOMENTUM ── */
+    #momentum-wrap { padding: 7rem 4rem; background: var(--sand); }
+    #momentum {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .momentum-bars { display: flex; flex-direction: column; gap: 1.4rem; }
+    .momentum-item { display: flex; flex-direction: column; gap: 0.5rem; }
+    .momentum-head {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .momentum-name {
+      font-size: 0.82rem; font-weight: 500; color: var(--text-primary);
+    }
+    .momentum-pct {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 600; color: var(--gold-dim);
+    }
+    .bar-track {
+      height: 8px; background: var(--dune); border-radius: 99px; overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%; border-radius: 99px; width: 0;
+      background: linear-gradient(to right, var(--gold-dim), var(--gold-bright));
+      transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ── SECTORS ── */
+    #sectors {
+      background: linear-gradient(135deg, var(--panel) 0%, var(--obsidian) 100%);
+      padding: 7rem 4rem; text-align: center; color: var(--sand);
+    }
+    #sectors .section-label { color: var(--gold-bright); }
+    #sectors .section-title { color: var(--sand); margin: 0 auto 1.4rem; }
+    #sectors .section-title em { color: var(--gold-bright); }
+    #sectors .section-body { color: rgba(250,246,238,0.58); margin: 0 auto 3.5rem; text-align: center; }
+    .sectors-grid {
+      display: flex; justify-content: center;
+      flex-wrap: wrap; gap: 1rem;
+      max-width: 860px; margin: 0 auto;
+    }
+    .sector-tag {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(200,150,30,0.18);
+      color: rgba(250,246,238,0.72);
+      font-size: 0.8rem; letter-spacing: 0.07em;
+      padding: 0.65rem 1.3rem; border-radius: 2px;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .sector-tag:hover {
+      background: rgba(200,150,30,0.1);
+      border-color: var(--gold-bright); color: var(--gold-bright);
+    }
+
+    /* ── CTA ── */
+    #cta-section {
+      background: var(--sand); text-align: center; padding: 7rem 2rem;
+    }
+    #cta-section .section-title { margin: 0 auto 1rem; }
+    #cta-section .section-body  { margin: 0 auto 2.5rem; text-align: center; }
+    .waitlist-form {
+      display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap;
+    }
+    .waitlist-form input {
+      font-family: 'Outfit', sans-serif; font-size: 0.9rem;
+      padding: 0.95rem 1.4rem;
+      border: 1px solid var(--stone); border-radius: 2px;
+      width: 280px; max-width: 100%; outline: none;
+      color: var(--text-primary); background: #fff;
+      transition: border-color 0.2s;
+    }
+    .waitlist-form input:focus { border-color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--obsidian); padding: 4rem 4rem 3rem; }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+    }
+    .footer-brand .nav-logo { color: var(--sand); display: block; margin-bottom: 1rem; }
+    footer p, footer a {
+      font-size: 0.79rem; font-weight: 300; line-height: 1.85;
+      color: rgba(250,246,238,0.36); text-decoration: none;
+    }
+    footer a:hover { color: var(--gold-bright); }
+    .footer-col h4 {
+      font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(250,246,238,0.48); margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.35rem; }
+    .footer-bottom {
+      max-width: 1200px; margin: 2.5rem auto 0;
+      border-top: 1px solid rgba(255,255,255,0.07); padding-top: 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.72rem; flex-wrap: wrap; gap: 0.5rem;
+    }
+
+    .fade-up {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1024px) {
+      nav { padding: 1.1rem 2rem; }
+      #vision-wrap, #momentum-wrap, #capabilities, #sectors { padding: 5rem 2rem; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      nav { padding: 1rem 1.5rem; }
+      #hero { min-height: 500px; }
+      .hero-scroll-hint { display: none; }
+      #vision    { grid-template-columns: 1fr; gap: 3rem; }
+      #momentum  { grid-template-columns: 1fr; gap: 3rem; }
+      .cap-grid  { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .footer-inner { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-ghost { width: 100%; max-width: 300px; text-align: center; }
+      .waitlist-form { flex-direction: column; align-items: center; }
+      .waitlist-form input { width: 100%; max-width: 320px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="offer-banner">
+    authae.com is available for acquisition.&ensp;·&ensp;
+    <a href="https://hacklb.com" target="_blank" rel="noopener noreferrer">Browse our domain portfolio →</a>
+  </div>
+
+  <nav id="main-nav">
+    <a class="nav-logo" href="/">Auth<span>AE</span></a>
+    <ul class="nav-links">
+      <li><a href="#vision-wrap">Vision</a></li>
+      <li><a href="#capabilities">Capabilities</a></li>
+      <li><a href="#sectors">Sectors</a></li>
+    </ul>
+    <a class="nav-cta" href="#cta-section">Request Access</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-drawer" id="nav-drawer" role="dialog" aria-label="Navigation menu">
+    <button class="drawer-close" id="drawer-close" aria-label="Close menu">✕</button>
+    <a href="#vision-wrap"  onclick="closeDrawer()">Vision</a>
+    <a href="#capabilities" onclick="closeDrawer()">Capabilities</a>
+    <a href="#sectors"      onclick="closeDrawer()">Sectors</a>
+    <a href="#cta-section"  onclick="closeDrawer()" class="drawer-cta">Request Access</a>
+  </div>
+
+  <section id="hero" aria-label="AuthAE — Securing the Emirates Digital Future">
+    <div id="hero-fallback"></div>
+    <img
+      id="hero-bg-img"
+      src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1800&q=80&auto=format&fit=crop"
+      alt="Dubai skyline at dusk representing UAE ambition and technological leadership"
+    />
+    <div class="hero-overlay"></div>
+    <div class="hero-geo"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Emirates Digital Identity Platform</p>
+      <h1 class="hero-title">Speed of<br><em>Vision.</em><br>Strength of Trust.</h1>
+      <p class="hero-sub">The UAE moves at a pace the world watches in awe. AuthAE delivers authentication infrastructure worthy of that ambition — secure, seamless, and built for what comes next.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#cta-section">Request Access</a>
+        <a class="btn-ghost"   href="#vision-wrap">Our Vision</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <div id="vision-wrap">
+    <section id="vision">
+      <div class="fade-up">
+        <p class="section-label">Why AuthAE</p>
+        <h2 class="section-title">A nation that<br>leads deserves<br><em>infrastructure that leads</em></h2>
+        <p class="section-body">The UAE was built on the courage to imagine what others called impossible. From empty desert to global financial capital in a generation — that spirit demands technology that can keep up. AuthAE is authentication at Emirates speed.</p>
+      </div>
+      <div class="fade-up" style="transition-delay:0.1s;">
+        <div class="vision-pillars">
+          <div class="vision-pillar">
+            <div class="vision-pillar-icon">🔐</div>
+            <div class="vision-pillar-body">
+              <h3>Zero-Trust by Default</h3>
+              <p>Every session verified. No assumed trust. Authentication that protects a nation's digital frontier.</p>
+            </div>
+          </div>
+          <div class="vision-pillar">
+            <div class="vision-pillar-icon">⚡</div>
+            <div class="vision-pillar-body">
+              <h3>Sub-100ms Authentication</h3>
+              <p>Fast enough for high-frequency trading. Fast enough for a nation that doesn't wait.</p>
+            </div>
+          </div>
+          <div class="vision-pillar">
+            <div class="vision-pillar-icon">🌐</div>
+            <div class="vision-pillar-body">
+              <h3>UAE Data Sovereignty</h3>
+              <p>Identity data processed within UAE borders. Compliant with TDRA and emerging National AI Strategy requirements.</p>
+            </div>
+          </div>
+        </div>
+        <div class="vision-callout">
+          <div class="big-stat">2031</div>
+          <p>UAE's digital economy target — the year AuthAE is building toward, with infrastructure that scales to every ambition between now and then.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section id="capabilities" aria-label="AuthAE Capabilities">
+    <div class="cap-inner">
+      <div class="fade-up" style="max-width:600px;">
+        <p class="section-label">The Platform</p>
+        <h2 class="section-title">Authentication<br>at <em>Emirates scale</em></h2>
+        <p class="section-body">From individual users to national-scale infrastructure — AuthAE handles the full spectrum of identity challenges facing the Gulf's most ambitious digital economy.</p>
+      </div>
+      <div class="cap-grid">
+        <article class="cap-card fade-up">
+          <div class="cap-stat">∞</div>
+          <h3>Elastic Scale</h3>
+          <p>Infrastructure that scales from a Dubai startup to a government super-app serving millions — without a configuration change.</p>
+        </article>
+        <article class="cap-card fade-up" style="transition-delay:0.1s">
+          <div class="cap-stat">AI</div>
+          <h3>Behavioural Intelligence</h3>
+          <p>Machine learning models trained on Gulf usage patterns detect anomalies in real time — blocking threats before they register as incidents.</p>
+        </article>
+        <article class="cap-card fade-up" style="transition-delay:0.2s">
+          <div class="cap-stat">ID</div>
+          <h3>Emirates ID Integration</h3>
+          <p>Native integration with the UAE Pass and Emirates ID ecosystem — the authentication layer that completes the national digital identity stack.</p>
+        </article>
+        <article class="cap-card fade-up" style="transition-delay:0.05s">
+          <div class="cap-stat">24</div>
+          <h3>Hour Coverage</h3>
+          <p>Operations centres in Dubai and Abu Dhabi provide around-the-clock monitoring for a business environment that never sleeps.</p>
+        </article>
+        <article class="cap-card fade-up" style="transition-delay:0.15s">
+          <div class="cap-stat">→</div>
+          <h3>Frictionless SSO</h3>
+          <p>One verified identity across every government portal, financial application, and private service in the UAE ecosystem.</p>
+        </article>
+        <article class="cap-card fade-up" style="transition-delay:0.25s">
+          <div class="cap-stat">+</div>
+          <h3>GCC Expansion Ready</h3>
+          <p>Architecture designed to extend across Saudi Arabia, Qatar, Kuwait, and the broader Gulf Cooperation Council as your business grows.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div id="momentum-wrap">
+    <section id="momentum">
+      <div class="fade-up">
+        <p class="section-label">The Digital UAE</p>
+        <h2 class="section-title">A market<br>moving at<br><em>full speed</em></h2>
+        <p class="section-body" style="margin-bottom:2rem;">The UAE digital economy is one of the fastest-growing in the world. AuthAE is building identity infrastructure ahead of the curve — so your organisation never falls behind it.</p>
+      </div>
+      <div class="fade-up" style="transition-delay:0.12s;">
+        <div class="momentum-bars">
+          <div class="momentum-item">
+            <div class="momentum-head">
+              <span class="momentum-name">Internet penetration</span>
+              <span class="momentum-pct">99%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" data-width="99"></div></div>
+          </div>
+          <div class="momentum-item">
+            <div class="momentum-head">
+              <span class="momentum-name">Mobile payment adoption</span>
+              <span class="momentum-pct">92%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" data-width="92"></div></div>
+          </div>
+          <div class="momentum-item">
+            <div class="momentum-head">
+              <span class="momentum-name">Government services digital</span>
+              <span class="momentum-pct">96%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" data-width="96"></div></div>
+          </div>
+          <div class="momentum-item">
+            <div class="momentum-head">
+              <span class="momentum-name">AI strategy maturity (GCC rank)</span>
+              <span class="momentum-pct">#1</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" data-width="100"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section id="sectors" aria-label="Sectors AuthAE Serves">
+    <p class="section-label">Who We Serve</p>
+    <h2 class="section-title">Every pillar of<br>the <em>Emirates economy</em></h2>
+    <p class="section-body">AuthAE is the identity backbone for the organisations shaping what the UAE becomes next — across every sector that matters.</p>
+    <div class="sectors-grid fade-up">
+      <span class="sector-tag">Islamic Banking</span>
+      <span class="sector-tag">Sovereign Wealth Funds</span>
+      <span class="sector-tag">Smart Government</span>
+      <span class="sector-tag">Real Estate &amp; PropTech</span>
+      <span class="sector-tag">Tourism &amp; Hospitality</span>
+      <span class="sector-tag">Logistics &amp; Trade</span>
+      <span class="sector-tag">Health &amp; BioTech</span>
+      <span class="sector-tag">FinTech &amp; Crypto</span>
+      <span class="sector-tag">Defence &amp; Security</span>
+    </div>
+  </section>
+
+  <section id="cta-section" aria-label="Request Access">
+    <p class="section-label">Begin</p>
+    <h2 class="section-title" style="max-width:520px; margin:0 auto 1rem;">Ready to authenticate<br>at <em>Emirates pace?</em></h2>
+    <p class="section-body">Join our early access programme and bring AuthAE's authentication infrastructure to your UAE operation.</p>
+    <form class="waitlist-form" onsubmit="handleWaitlist(event)">
+      <input type="email" id="email-input" placeholder="your@email.com" required />
+      <button type="submit" class="btn-primary">Request Access</button>
+    </form>
+    <p id="waitlist-msg" style="margin-top:1.2rem; font-size:0.84rem; color:var(--gold-dim); min-height:1.2em;"></p>
+    <p style="font-size:0.72rem; color:var(--text-soft); margin-top:0.5rem;">No spam. Unsubscribe anytime.</p>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="nav-logo" href="/">Auth<span style="color:var(--gold-bright)">AE</span></a>
+        <p>Authentication for the Emirates.<br>Speed. Scale. Sovereignty.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Vision</a></li>
+          <li><a href="#">Security</a></li>
+          <li><a href="#">TDRA Compliance</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="#">Government</a></li>
+          <li><a href="#">Financial</a></li>
+          <li><a href="#">Enterprise</a></li>
+          <li><a href="#">GCC Expansion</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">PDPL Compliance</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AuthAE. All rights reserved.</p>
+      <p>authae.com — Identity at Emirates speed.</p>
+    </div>
+  </footer>
+
+  <script>
+    var hamburger = document.getElementById('hamburger');
+    var drawer = document.getElementById('nav-drawer');
+    var drawerClose = document.getElementById('drawer-close');
+    hamburger.addEventListener('click', function () {
+      var isOpen = drawer.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    drawerClose.addEventListener('click', closeDrawer);
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      hamburger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
+    window.addEventListener('scroll', function () {
+      document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        entry.target.querySelectorAll('.bar-fill[data-width]').forEach(function (bar) {
+          setTimeout(function () { bar.style.width = bar.getAttribute('data-width') + '%'; }, 200);
+        });
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(function (el) { observer.observe(el); });
+    function handleWaitlist(e) {
+      e.preventDefault();
+      document.getElementById('waitlist-msg').textContent = '✓ Received. Our team will reach out shortly.';
+      document.getElementById('email-input').value = '';
+    }
+  </script>
+</body>
+</html>
